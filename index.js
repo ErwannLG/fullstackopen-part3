@@ -32,7 +32,7 @@ app.get("/", (request, response) => {
 });
 
 app.get("/info/", (request, response) => {
-	let time = new Date();
+	const time = new Date();
 	response.send(`
 		<p>Phonebook has info for ${persons.length} people</p>
 		<p>${time}</p>
@@ -52,6 +52,13 @@ app.get("/api/persons/:id", (request, response) => {
 	} else {
 		response.status(404).end();
 	}
+});
+
+app.delete("/api/persons/:id", (request, response) => {
+	const id = Number(request.params.id);
+	persons = persons.filter((person) => person.id !== id);
+
+	response.status(204).end();
 });
 
 const PORT = 3001;
