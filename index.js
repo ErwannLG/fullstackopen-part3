@@ -72,7 +72,13 @@ app.post("/api/persons", (request, response) => {
 
 	if (!body.name || !body.number) {
 		return response.status(400).json({
-			error: "name or number missing",
+			error: "information missing",
+		});
+	}
+
+	if (persons.map((person) => person.name).includes(body.name)) {
+		return response.status(400).json({
+			error: "name must be unique",
 		});
 	}
 
