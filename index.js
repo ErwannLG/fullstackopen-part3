@@ -102,7 +102,7 @@ app.put("/api/persons/:id", (request, response, next) => {
 			return updatedPerson.toJSON();
 		})
 		.then((updatedAndFormattedPerson) => {
-			response.json(updatedAndFormattedNote);
+			response.json(updatedAndFormattedPerson);
 		})
 		.catch((error) => next(error));
 });
